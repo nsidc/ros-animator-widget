@@ -1,6 +1,4 @@
-import {
-  createSlice,
-} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 // TODO: DRY initialState. Why do we have to define it in createSlice _and_
 // useReducer?

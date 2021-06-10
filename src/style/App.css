@@ -4,3 +4,11 @@
   border: 1px solid;
   border-radius: 15px;
 }
+
+.nsidc-blue {
+  color: #003F69;
+}
+
+.app-loading {
+  margin: auto;
+}
