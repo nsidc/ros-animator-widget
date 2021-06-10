@@ -4,11 +4,3 @@
   border: 1px solid;
   border-radius: 15px;
 }
-
-.ros-animator-widget-header {
-  background-color: #282c34;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: #eae600;
-}
