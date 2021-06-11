@@ -4,18 +4,18 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 // useReducer?
 const initialState = {
   location: null as string | null,
-  // frames: [],
+  frames: [] as Array<Blob>,
 }
 
 const stateSlice = createSlice({
   name: "animation",
   initialState: initialState,
   reducers: {
-    setLocation: (prevState, action: PayloadAction<string>) => {
+    setFrames: (prevState, action: PayloadAction<Array<Blob>>) => {
       return {
         ...prevState,
-        location: action.payload,
-      };
+        frames: action.payload,
+      }
     },
   },
 });
