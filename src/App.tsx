@@ -38,21 +38,26 @@ const App: React.FC<IAppProps> = (props) => {
 
   React.useEffect(
     () => {
+      console.log(state.animation.location);
       if ( ! state.animation.location ) {
-        return
+        console.log(
+          'No animation provided in "data-animation" attribute: ' +
+          (state.animation.location as string)
+        );
+        dispatch(loadingState.actions.loaded());
+        return;
       }
 
       fetchImagesFromManifest(state.animation.location).then(
         (blob) => {
-          // eslint-disable-next-line
           dispatch(animationState.actions.setFrames([blob]));
-          // eslint-disable-next-line
-          dispatch(loadingState.actions.loaded());
         },
         (reason: string) => {
           console.log(`ERROR: Promise rejected because: ${reason}`);
         },
-      );
+      ).finally(() => {
+        dispatch(loadingState.actions.loaded());
+      });
     },
     [state.animation.location],
   );
@@ -70,7 +75,7 @@ const widgetContents = (state: FixTypeLater) => {
     return (
       <Loading />
     );
-  } else if (state.animation.frames !== []) {
+  } else if (state.animation.frames.length > 0) {
     const frameUrl = URL.createObjectURL(state.animation.frames[0]);
     return (
       <div>

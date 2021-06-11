@@ -1,4 +1,5 @@
 export const fetchImagesFromManifest = (url: string): Promise<Blob> => {
+  // TODO: Get an actual manifest; get all images
   const manifest = [url];
 
   return fetch(manifest[0]).then(
