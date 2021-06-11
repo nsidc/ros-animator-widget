@@ -60,22 +60,29 @@ const App: React.FC<IAppProps> = (props) => {
   return (
     <div className="ros-animator-widget-container">
       {widgetContents(state)}
-      {JSON.stringify(state)}
     </div>
   );
 }
 
+/* eslint-disable */
 const widgetContents = (state: FixTypeLater) => {
-  // eslint-disable-next-line
   if (state.loading) {
     return (
       <Loading />
     );
+  } else if (state.animation.frames !== []) {
+    const frameUrl = URL.createObjectURL(state.animation.frames[0]);
+    return (
+      <div>
+        <img src={frameUrl} />
+      </div>
+    );
   } else {
     return (
-      <div>Loaded!</div>
+      <div>Something is wrong!</div>
     );
   }
 }
+/* eslint-enable */
 
 export default App;
