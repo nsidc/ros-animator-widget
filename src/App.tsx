@@ -38,7 +38,6 @@ const App: React.FC<IAppProps> = (props) => {
 
   React.useEffect(
     () => {
-      console.log(state.animation.location);
       if ( ! state.animation.location ) {
         console.log(
           'No animation provided in "data-animation" attribute: ' +
@@ -49,8 +48,8 @@ const App: React.FC<IAppProps> = (props) => {
       }
 
       fetchImagesFromManifest(state.animation.location).then(
-        (blob) => {
-          dispatch(animationState.actions.setFrames([blob]));
+        (images) => {
+          dispatch(animationState.actions.setFrames(images));
         },
         (reason: string) => {
           console.log(`ERROR: Promise rejected because: ${reason}`);
