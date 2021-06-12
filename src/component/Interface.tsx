@@ -35,7 +35,7 @@ const Interface: React.FC<IInterfaceProps> = (props) => {
         dispatch(loadingState.actions.loaded());
       });
     },
-    [appState.animation.location],
+    [appState.animation.location, dispatch],
   );
   React.useEffect(
     () => {
@@ -49,6 +49,7 @@ const Interface: React.FC<IInterfaceProps> = (props) => {
       }
       dispatch(animationState.actions.setLocation(props.animationLocation));
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   );
 
