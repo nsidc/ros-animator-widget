@@ -20,10 +20,12 @@ const rootReducer = combineReducers({
 });
 type RootReducerType = ReturnType<typeof rootReducer>;
 
-const AppContext = React.createContext<{
+interface IContext {
   state: typeof initialState;
-  dispatch: React.Dispatch<any>;  // @ts-ignore
-}>(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  dispatch: React.Dispatch<any>;
+}
+const AppContext = React.createContext<IContext>(
   {
     state: initialState,
     dispatch: () => undefined,
@@ -45,4 +47,5 @@ export const StateProvider: React.FC = ( { children } ) => {
   );
 }
 
-export const useAppState = () => React.useContext(AppContext);
+export const useAppState = (): IContext =>
+  React.useContext(AppContext);
