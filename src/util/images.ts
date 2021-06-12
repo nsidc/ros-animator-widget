@@ -7,13 +7,13 @@ const imageUrl = (manifestUrl: string, imagePath: string): string => {
   return `${rootUrl}/${imagePath}`;
 }
 
-export const fetchImagesFromManifest = (manifestUrl: string): Promise<Blob[]>  => {
+export const fetchImagesFromManifest = (manifestUrl: string): Promise<string[]>  => {
   return fetch(manifestUrl).then((response) => {
     if ( !response.ok ) {
       throw new Error('Failed to fetch animation manifest.');
     }
     return response.json()
-  }).then((imagePaths: string[]): Promise<Blob[]> => {
+  }).then((imagePaths: string[]): Promise<string[]> => {
     return Promise.all(
       imagePaths.map((imagePath) =>
         fetchImage(imageUrl(manifestUrl, imagePath))
@@ -23,7 +23,7 @@ export const fetchImagesFromManifest = (manifestUrl: string): Promise<Blob[]>  =
 }
 
 
-const fetchImage = (url: string): Promise<Blob> => {
+const fetchImage = (url: string): Promise<string> => {
   return fetch(url).then(
     response => {
       if ( !response.ok ) {
@@ -38,7 +38,8 @@ const fetchImage = (url: string): Promise<Blob> => {
           `Expected an image, received '${blob.type}' from '${url}'`
         );
       }
-      return blob;
+
+      return URL.createObjectURL(blob);
     }
   );
 }

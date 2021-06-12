@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Animation from './Animation';
+import Failed from './Failed';
 import Loading from './Loading';
 import { useAppState } from '../state';
 import animationState from '../state/animation';
@@ -23,11 +25,11 @@ const Interface: React.FC<IInterfaceProps> = (props) => {
       }
 
       fetchImagesFromManifest(appState.animation.location).then(
-        (images) => {
+        (images: string[]) => {
           dispatch(animationState.actions.setFrames(images));
         },
         (reason: string) => {
-          console.error(`Promise rejected because: ${reason}`);
+          console.error(`Failed to fetch images because: ${reason}`);
         },
       ).finally(() => {
         dispatch(loadingState.actions.loaded());
@@ -61,15 +63,14 @@ const widgetContents = (state: FixTypeLater) => {
       <Loading />
     );
   } else if (state.animation.frames.length > 0) {
-    const frameUrl = URL.createObjectURL(state.animation.frames[0]);
     return (
-      <div>
-        <img src={frameUrl} />
-      </div>
+      <Animation
+        frames={state.animation.frames}
+        playbackInterval={100} />
     );
   } else {
     return (
-      <div>Something is wrong!</div>
+      <Failed />
     );
   }
 }
