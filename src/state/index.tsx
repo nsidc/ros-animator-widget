@@ -7,16 +7,21 @@ import animationState, {
 import loadingState, {
   initialState as loadingInitialState
 } from './loading';
+import playbackState, {
+  initialState as playbackInitialState
+} from './playback';
 
 
 const initialState = {
   loading: loadingInitialState,
   animation: animationInitialState,
+  playback: playbackInitialState,
 };
 
 const rootReducer = combineReducers({
   loading: loadingState.reducer,
   animation: animationState.reducer,
+  playback: playbackState.reducer,
 });
 type RootReducerType = ReturnType<typeof rootReducer>;
 
