@@ -65,9 +65,12 @@ const widgetContents = (state: FixTypeLater) => {
     );
   } else if (state.animation.frames.length > 0) {
     return (
-      <Animation
-        frames={state.animation.frames}
-        playbackInterval={100} />
+      <div className='animation-container'>
+        <Animation
+          frames={state.animation.frames}
+          playback={state.playback}
+          playbackInterval={500} />
+      </div>
     );
   } else {
     return (
