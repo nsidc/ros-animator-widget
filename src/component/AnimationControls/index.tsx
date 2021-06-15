@@ -1,7 +1,10 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStepForward, faStepBackward } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 
-import { useAppState } from '../state';
-import playbackState from '../state/playback';
+import { useAppState } from '../../state';
+import playbackState from '../../state/playback';
+import PlayPause from './PlayPause';
 
 
 interface IAnimationControlsProps {
@@ -17,16 +20,15 @@ const AnimationControls: React.FC<IAnimationControlsProps> = (props) => {
 
   return (
     <div>
-      <button onClick={handleTogglePlayback}>
-        {appState.playback === 'PAUSED' ? 'Play' : 'Pause'}
-      </button>
+      <PlayPause handleTogglePlayback={handleTogglePlayback}
+                 playback={appState.playback} />
       <button disabled={appState.playback === 'PLAYING'} 
               onClick={props.decrementFrame}>
-        Previous
+        <FontAwesomeIcon icon={faStepBackward} />
       </button>
       <button disabled={appState.playback === 'PLAYING'} 
               onClick={props.incrementFrame}>
-        Next
+        <FontAwesomeIcon icon={faStepForward} />
       </button>
     </div>
   );

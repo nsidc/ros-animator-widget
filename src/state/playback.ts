@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export const initialState = 'PAUSED' as 'PLAYING' | 'PAUSED';
+export type stateType = 'PLAYING' | 'PAUSED';
+export const initialState = 'PAUSED' as stateType;
 
 const stateSlice = createSlice({
   name: "playback",
