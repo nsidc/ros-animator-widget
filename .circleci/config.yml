@@ -18,7 +18,8 @@ jobs:
           command: npm run lint
       - run:
           name: Test
-          command: npm run test
+          # TODO: Add tests and remove flag below:
+          command: npm run test --passWithNoTests
 
 
 workflows:
