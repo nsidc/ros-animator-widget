@@ -32,7 +32,7 @@ jobs:
       - image: circleci/node:14
     steps:
       - attach_workspace:
-          at: ~/ros-animator-widget/dist
+          at: ~/ros-animator-widget
       - run: 
           name: Publish
           command: ls -la ~/ros-animator-widget/dist
