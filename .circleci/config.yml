@@ -21,10 +21,10 @@ jobs:
           command: npm run test
       - run:
           name: Build Bundle
-          command: npm run build
+          command: npm run build:bundle
       - persist_to_workspace:
           root: ~/ros-animator-widget
-          paths: ./build
+          paths: ./dist
 
   publish:
     <<: *setup
@@ -32,10 +32,10 @@ jobs:
       - image: circleci/node:14
     steps:
       - attach_workspace:
-          at: ~/ros-animator-widget/build
+          at: ~/ros-animator-widget/dist
       - run: 
           name: Publish
-          command: ls -la .
+          command: ls -la ~/ros-animator-widget/dist
 
 
 workflows:
