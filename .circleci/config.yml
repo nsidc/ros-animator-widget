@@ -4,7 +4,7 @@ setup: &setup
   working_directory: ~/ros-animator-widget
 
 jobs:
-  test:
+  test-and-build:
     <<: *setup
     docker:
       - image: circleci/node:14
@@ -19,12 +19,6 @@ jobs:
       - run:
           name: Test
           command: npm run test
-  build:
-    <<: *setup
-    docker:
-      - image: circleci/node:14
-    steps:
-      - checkout
       - run:
           name: Build Bundle
           command: npm run build
@@ -49,20 +43,14 @@ workflows:
 
   build:
     jobs:
-      - test:
-          filters:
-            tags:
-              only: /.*/
-      - build:
-          requires:
-            - test
+      - test-and-build:
           filters:
             tags:
               only: /.*/
       - publish:
           context: org-global
           requires:
-            - build
+            - test-and-build
           filters:
             branches:
               only: main
