@@ -19,6 +19,29 @@ jobs:
       - run:
           name: Test
           command: npm run test
+  build:
+    <<: *setup
+    docker:
+      - image: circleci/node:14
+    steps:
+      - checkout
+      - run:
+          name: Build Bundle
+          command: npm run build
+      - persist_to_workspace:
+          root: ~/ros-animator-widget
+          paths: ./build
+
+  publish:
+    <<: *setup
+    docker:
+      - image: circleci/node:14
+    steps:
+      - attach_workspace:
+          at: ~/ros-animator-widget/build
+      - run: 
+          name: Publish
+          command: ls -la .
 
 
 workflows:
@@ -30,3 +53,18 @@ workflows:
           filters:
             tags:
               only: /.*/
+      - build:
+          requires:
+            - test
+          filters:
+            tags:
+              only: /.*/
+      - publish:
+          context: org-global
+          requires:
+            - build
+          filters:
+            branches:
+              only: main
+            tags:
+              only: /^v[0-9]+(\.[0-9]+)*(\.[\-a-zA-Z0-9]+)?$/
