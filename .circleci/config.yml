@@ -42,7 +42,7 @@ jobs:
           # nsidc-service-deploy shared user. That user must have ____ access
           # to this repository in order to make a release.
           command: |
-            if [ ! -z "${GITHUB_CIRCLECI_TOKEN}" ]; then
+            if [ -z "${GITHUB_CIRCLECI_TOKEN}" ]; then
               echo "\$GITHUB_CIRCLECI_TOKEN not found. Aborting."
               exit 1
             fi
