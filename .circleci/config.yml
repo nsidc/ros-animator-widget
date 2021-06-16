@@ -38,17 +38,20 @@ jobs:
           at: ~/ros-animator-widget
       - run:
           name: Publish to GitHub Release
+          # NOTE: The $GITHUB_CIRCLECI_TOKEN is associated with the
+          # nsidc-service-deploy shared user. That user must have ____ access
+          # to this repository in order to make a release.
           command: |
-            if [ ! -z "${GITHUB_TOKEN}" ]; then
-              echo "\$GITHUB_TOKEN not found. Aborting."
+            if [ ! -z "${GITHUB_CIRCLECI_TOKEN}" ]; then
+              echo "\$GITHUB_CIRCLECI_TOKEN not found. Aborting."
               exit 1
             fi
             version=${CIRCLE_TAG}
 
             ghr \
               -prerelease \
-              -t "${GITHUB_TOKEN}" \
-              -u "${CIRCLE_PROJECT_USERNAME}" -r "${CIRCLE_PROJECT_REPONAME}"
+              -t "${GITHUB_CIRCLECI_TOKEN}" \
+              -u "${CIRCLE_PROJECT_USERNAME}" -r "${CIRCLE_PROJECT_REPONAME}" \
               "${version}" ~/ros-animator-widget/dist/bundle.min.js
 
       # TODO: npm publish with build dir (and dist?)?
