@@ -39,7 +39,7 @@ Example:
 
   <p>...</p>
 
-  <script src="https://github.com/nsidc/ros-animator-widget/releases/download/v0.1.0-test/bundle.min.js">
+  <script src="https://github.com/nsidc/ros-animator-widget/releases/download/v0.1.0/bundle.min.js">
   </script>
 </body>
 ```

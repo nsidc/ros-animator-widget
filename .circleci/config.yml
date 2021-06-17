@@ -24,9 +24,9 @@ jobs:
           command: npm run build:bundle
       - persist_to_workspace:
           root: ~/ros-animator-widget
-          paths: ./dist
+          paths: .
 
-  publish:
+  publish-to-github:
     <<: *setup
     docker:
       # TODO: Find a maintained image that provides `ghr`? This one is 2 years
@@ -37,7 +37,7 @@ jobs:
       - attach_workspace:
           at: ~/ros-animator-widget
       - run:
-          name: Publish to GitHub Release
+          name: Publish GitHub Release
           # NOTE: The $GITHUB_CIRCLECI_TOKEN is associated with the
           # nsidc-service-deploy shared user. That user must have ____ access
           # to this repository in order to make a release.
@@ -54,7 +54,18 @@ jobs:
               -u "${CIRCLE_PROJECT_USERNAME}" -r "${CIRCLE_PROJECT_REPONAME}" \
               "${version}" ~/ros-animator-widget/dist/bundle.min.js
 
-      # TODO: npm publish with build dir (and dist?)?
+  publish-to-npm:
+    <<: *setup
+    docker:
+      - image: circleci/node:14
+    steps:
+      - attach_workspace:
+          at: ~/ros-animator-widget
+      - run:
+          name: Publish NPM Package
+          command: |
+            echo "//registry.npmjs.org/:_authToken=$NPM_DEPLOY_TOKEN" > .npmrc
+            npm publish --access public
 
 
 workflows:
@@ -66,7 +77,16 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - publish:
+      - publish-to-github:
+          context: org-global
+          requires:
+            - test-and-build
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v[0-9]+(\.[0-9]+)*(\.[\-a-zA-Z0-9]+)?$/
+      - publish-to-npm:
           context: org-global
           requires:
             - test-and-build
