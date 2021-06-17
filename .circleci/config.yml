@@ -4,7 +4,7 @@ setup: &setup
   working_directory: ~/ros-animator-widget
 
 jobs:
-  test:
+  test-and-build:
     <<: *setup
     docker:
       - image: circleci/node:14
@@ -19,6 +19,42 @@ jobs:
       - run:
           name: Test
           command: npm run test
+      - run:
+          name: Build Bundle
+          command: npm run build:bundle
+      - persist_to_workspace:
+          root: ~/ros-animator-widget
+          paths: ./dist
+
+  publish:
+    <<: *setup
+    docker:
+      # TODO: Find a maintained image that provides `ghr`? This one is 2 years
+      # un-updated, but recommended by CircleCI here:
+      # https://circleci.com/blog/publishing-to-github-releases-via-circleci/
+      - image: cibuilds/github:0.13.0
+    steps:
+      - attach_workspace:
+          at: ~/ros-animator-widget
+      - run:
+          name: Publish to GitHub Release
+          # NOTE: The $GITHUB_CIRCLECI_TOKEN is associated with the
+          # nsidc-service-deploy shared user. That user must have ____ access
+          # to this repository in order to make a release.
+          command: |
+            if [ -z "${GITHUB_CIRCLECI_TOKEN}" ]; then
+              echo "\$GITHUB_CIRCLECI_TOKEN not found. Aborting."
+              exit 1
+            fi
+            version=${CIRCLE_TAG}
+
+            ghr \
+              -prerelease \
+              -t "${GITHUB_CIRCLECI_TOKEN}" \
+              -u "${CIRCLE_PROJECT_USERNAME}" -r "${CIRCLE_PROJECT_REPONAME}" \
+              "${version}" ~/ros-animator-widget/dist/bundle.min.js
+
+      # TODO: npm publish with build dir (and dist?)?
 
 
 workflows:
@@ -26,7 +62,16 @@ workflows:
 
   build:
     jobs:
-      - test:
+      - test-and-build:
           filters:
             tags:
               only: /.*/
+      - publish:
+          context: org-global
+          requires:
+            - test-and-build
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v[0-9]+(\.[0-9]+)*(\.[\-a-zA-Z0-9]+)?$/
