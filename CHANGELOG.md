@@ -1,3 +1,8 @@
+# v0.1.1 (2021-06-17)
+
+Release on NPM.
+
+
 # v0.1.0 (2021-06-16)
 
 Initial release.
