@@ -12,6 +12,8 @@ module.exports = {
   )},
   output: {
     filename: 'bundle.min.js',
+    library: 'ros-animator-widget',
+    libraryTarget: 'umd'
   },
   module: {
     rules: [

@@ -2,6 +2,9 @@
   "name": "@nsidc/ros-animator-widget",
   "version": "0.1.0",
   "private": false,
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
