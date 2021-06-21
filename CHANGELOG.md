@@ -1,3 +1,8 @@
+# v0.1.1 (Unreleased)
+
+* Build UMD bundle for UNPKG CDN.
+
+
 # v0.1.0 (2021-06-21)
 
 Initial release to GitHub and NPM.
