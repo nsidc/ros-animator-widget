@@ -1,11 +1,6 @@
-# v0.1.1 (2021-06-17)
+# v0.1.0 (2021-06-21)
 
-Release on NPM.
-
-
-# v0.1.0 (2021-06-16)
-
-Initial release.
+Initial release to GitHub and NPM.
 
 * Use `manifest.json` to locate frames.
 * Play/pause animation.
