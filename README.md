@@ -51,7 +51,7 @@ Example:
 
 To release:
 
-* Set the version in `package.json` and `package-lock.json`. Running `npm
-  install` will sync to the lockfile.
 * Update the `CHANGELOG.md` following the existing convention.
-* Commit and push a tag with the new version in the format `vX.Y.Z`.
+* Create a release commit with `npm version < major | minor | patch >`.
+  * For a pre-release, use `npm version prerelease --preid=rc`.
+* Push the new commit and tag.
