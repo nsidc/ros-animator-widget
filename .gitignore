@@ -2,6 +2,8 @@
 /dist
 /build
 
+/docker-compose.override.yml
+
 # ctags
 /tags
 /tags.lock
