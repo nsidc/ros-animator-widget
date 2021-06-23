@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+
+  ros-animator-widget-demo:
+    image: nsidc/ros-animator-widget-demo:dev
+    build:
+      context: .
+      target: builder
+      args:
+        - env=dev
+    # Uncomment to skip linting errors and expose compiler errors:
+    # command: 'npm run start:nolint'
+    ports:
+      - 81:3000
+    volumes:
+      - ./src:/app/src:ro
+      - ./public:/app/public:ro
+      - ./.eslintrc.js:/app/.eslintrc.js:ro
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+    restart: on-failure
+
