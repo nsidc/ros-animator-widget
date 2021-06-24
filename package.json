@@ -1,7 +1,11 @@
 {
   "name": "@nsidc/ros-animator-widget",
-  "version": "0.1.0",
+  "version": "0.1.1-rc.3",
   "private": false,
+  "files": [
+    "dist"
+  ],
+  "unpkg": "dist/bundle.min.js",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
@@ -32,7 +36,7 @@
     "start:nolint": "DISABLE_ESLINT_PLUGIN=true react-scripts start",
     "build": "react-scripts build",
     "build:nolint": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
-    "build:bundle": "npm run build && webpack --config webpack.config.js",
+    "build:bundle": "webpack --config webpack.config.js",
     "test": "react-scripts test --passWithNoTests",
     "lint": "eslint src --ext .ts --ext .tsx",
     "eject": "react-scripts eject",

@@ -1,20 +1,32 @@
-// This webpack config enables combining all elements of the standard chunked
-// build into one bundle for clean release.
-const path = require('path');
-const glob = require('glob');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+// Single-file build for distribution of widget
+const path = require("path")
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin")
 
 module.exports = {
-  mode: 'production',
-  entry: {
-    'bundle.js': glob.sync('build/static/?(js|css)/*.?(js|css)').map(
-      (f) => path.resolve(__dirname, f)
-  )},
+  entry: './src/index.tsx',
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+  },
   output: {
+    path: path.join(__dirname, 'dist'),
     filename: 'bundle.min.js',
   },
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        loader: 'babel-loader',
+        options: {
+          "presets": [
+            "@babel/env",
+            "@babel/react",
+            "@babel/preset-typescript",
+          ],
+          "plugins": [
+            "@babel/plugin-proposal-class-properties",
+          ],
+        },
+      },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],

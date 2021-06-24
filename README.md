@@ -39,7 +39,8 @@ Example:
 
   <p>...</p>
 
-  <script src="https://github.com/nsidc/ros-animator-widget/releases/download/v0.1.0/bundle.min.js">
+  <!-- UNPKG is a CDN in front of NPM -->
+  <script src="https://unpkg.com/@nsidc/ros-animator-widget@0.1.1">
   </script>
 </body>
 ```
@@ -51,7 +52,7 @@ Example:
 
 To release:
 
-* Set the version in `package.json` and `package-lock.json`. Running `npm
-  install` will sync to the lockfile.
 * Update the `CHANGELOG.md` following the existing convention.
-* Commit and push a tag with the new version in the format `vX.Y.Z`.
+* Create a release commit with `npm version < major | minor | patch >`.
+  * For a pre-release, use `npm version prerelease --preid=rc`.
+* Push the new commit and tag.

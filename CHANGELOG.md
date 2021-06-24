@@ -1,3 +1,8 @@
+# v0.1.1 (2021-06-23)
+
+* Build single-file bundle for easy CDN distribution.
+
+
 # v0.1.0 (2021-06-21)
 
 Initial release to GitHub and NPM.
