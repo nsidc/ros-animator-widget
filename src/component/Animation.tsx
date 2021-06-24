@@ -64,8 +64,12 @@ const Animation: React.FC<IAnimationProps> = (props) => {
       <img src={props.frames[frameIndex]}
            alt={'Animated map data'} />
       <div>{frameIndex}</div>
-      <AnimationControls incrementFrame={() => frameChangerCallback(1)}
-                         decrementFrame={() => frameChangerCallback(-1)} />
+      <AnimationControls
+        frame={frameIndex}
+        setFrame={setFrameIndex}
+        totalFrames={finalFrame}
+        incrementFrame={() => frameChangerCallback(1)}
+        decrementFrame={() => frameChangerCallback(-1)} />
     </div>
   );
 }
