@@ -18,6 +18,11 @@ const Failed: React.FC = () => {
         Something went wrong!
       </div>
 
+      <div>
+        {'Contact NSIDC User Services at '}
+        <a href={'mailto:nsidc@nsidc.org'}>nsidc@nsidc.org</a>
+        {' for help.'}
+      </div>
     </div>
   );
 }
