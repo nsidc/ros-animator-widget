@@ -3,7 +3,8 @@ version: '3.4'
 services:
 
   animation-host:
-    image: nginx:1.21-alpine
+    image: nsidc/ros-animations:local
+    build: ./file_server
     ports:
       - 80:80
       - 443:443
