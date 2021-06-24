@@ -1,3 +1,8 @@
+# v0.2.0 (Unreleased)
+
+* Add USO email prompt in error component.
+
+
 # v0.1.1 (2021-06-23)
 
 * Build single-file bundle for easy CDN distribution.
