@@ -39,7 +39,8 @@ Example:
 
   <p>...</p>
 
-  <script src="https://github.com/nsidc/ros-animator-widget/releases/download/v0.1.0/bundle.min.js">
+  <!-- UNPKG is a CDN in front of NPM -->
+  <script src="https://unpkg.com/@nsidc/ros-animator-widget@0.1.1">
   </script>
 </body>
 ```

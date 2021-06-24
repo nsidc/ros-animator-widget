@@ -1,6 +1,6 @@
-# v0.1.1 (Unreleased)
+# v0.1.1 (2021-06-23)
 
-* Build UMD bundle for UNPKG CDN.
+* Build single-file bundle for easy CDN distribution.
 
 
 # v0.1.0 (2021-06-21)
