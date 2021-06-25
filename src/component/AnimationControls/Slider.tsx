@@ -19,7 +19,7 @@ const Slider: React.FC<ISliderProps> = (props) => {
       value={props.currentFrame}
       onChange={props.handleSetFrame}
       disabled={props.playback === 'PLAYING'}
-    ></input>
+      style={{width: '75%'}} />
   )
 }
 export default Slider;
