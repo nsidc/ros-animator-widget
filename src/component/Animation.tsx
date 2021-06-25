@@ -1,6 +1,7 @@
 import React from 'react';
 
 import AnimationControls from './AnimationControls';
+import Viewport from './Viewport';
 
 
 const initialFrame = 0;
@@ -61,11 +62,16 @@ const Animation: React.FC<IAnimationProps> = (props) => {
 
   return (
     <div className={'animation-container'}>
-      <img src={props.frames[frameIndex]}
-           alt={'Animated map data'} />
+      <Viewport
+        frames={props.frames}
+        currentFrame={frameIndex} />
       <div>{frameIndex}</div>
-      <AnimationControls incrementFrame={() => frameChangerCallback(1)}
-                         decrementFrame={() => frameChangerCallback(-1)} />
+      <AnimationControls
+        frame={frameIndex}
+        setFrame={setFrameIndex}
+        totalFrames={finalFrame}
+        incrementFrame={() => frameChangerCallback(1)}
+        decrementFrame={() => frameChangerCallback(-1)} />
     </div>
   );
 }

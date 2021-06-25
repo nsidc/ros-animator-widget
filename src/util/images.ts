@@ -7,20 +7,26 @@ const imageUrl = (manifestUrl: string, imagePath: string): string => {
   return `${rootUrl}/${imagePath}`;
 }
 
-export const fetchImagesFromManifest = (manifestUrl: string): Promise<string[]>  => {
-  return fetch(manifestUrl).then((response) => {
+export const fetchImagesFromManifest = (manifestUrl: string): Promise<string[]> => {
+  return fetchManifest(manifestUrl).then(
+    (imagePaths: string[]): Promise<string[]> => {
+      return Promise.all(
+        imagePaths.map((imagePath) =>
+          fetchImage(imageUrl(manifestUrl, imagePath))
+        )
+      );
+    }
+  );
+}
+
+
+export const fetchManifest = (manifestUrl: string): Promise<string[]> =>
+  fetch(manifestUrl).then((response) => {
     if ( !response.ok ) {
       throw new Error('Failed to fetch animation manifest.');
     }
-    return response.json()
-  }).then((imagePaths: string[]): Promise<string[]> => {
-    return Promise.all(
-      imagePaths.map((imagePath) =>
-        fetchImage(imageUrl(manifestUrl, imagePath))
-      )
-    );
-  });
-}
+    return response.json() as unknown as string[];
+  })
 
 
 const fetchImage = (url: string): Promise<string> => {
