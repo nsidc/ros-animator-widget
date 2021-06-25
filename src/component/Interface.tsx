@@ -69,7 +69,7 @@ const widgetContents = (state: FixTypeLater) => {
         <Animation
           frames={state.animation.frames}
           playback={state.playback}
-          playbackInterval={500} />
+          playbackFps={state.playbackSpeed} />
       </div>
     );
   } else {

@@ -2,6 +2,7 @@
 
 * Add USO email prompt in error component.
 * Add slider animation control.
+* Add playback speed animation control.
 
 
 # v0.1.1 (2021-06-23)

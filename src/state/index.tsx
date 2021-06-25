@@ -5,23 +5,28 @@ import animationState, {
   initialState as animationInitialState,
 } from './animation';
 import loadingState, {
-  initialState as loadingInitialState
+  initialState as loadingInitialState,
 } from './loading';
 import playbackState, {
-  initialState as playbackInitialState
+  initialState as playbackInitialState,
 } from './playback';
+import playbackSpeedState, {
+  initialState as playbackSpeedInitialState,
+} from './playbackSpeed';
 
 
 const initialState = {
   loading: loadingInitialState,
   animation: animationInitialState,
   playback: playbackInitialState,
+  playbackSpeed: playbackSpeedInitialState,
 };
 
 const rootReducer = combineReducers({
   loading: loadingState.reducer,
   animation: animationState.reducer,
   playback: playbackState.reducer,
+  playbackSpeed: playbackSpeedState.reducer,
 });
 type RootReducerType = ReturnType<typeof rootReducer>;
 

@@ -31,7 +31,7 @@ const frameChanger = (direction: 1 | -1, finalFrame: number) => {
 
 interface IAnimationProps {
   frames: Array<string>;
-  playbackInterval: number;
+  playbackFps: number;
   playback: 'PLAYING' | 'PAUSED';
 }
 
@@ -48,16 +48,17 @@ const Animation: React.FC<IAnimationProps> = (props) => {
       if (props.playback !== 'PLAYING') {
         return;
       }
+      const playbackInterval = 1000 / props.playbackFps;
       const interval = setInterval(
         () => {
           setFrameIndex(frameChanger(1, finalFrame));
         },
-        props.playbackInterval,
+        playbackInterval,
       );
 
       return () => clearInterval(interval);
     },
-    [props.playback, props.playbackInterval, props.frames, finalFrame]
+    [props.playback, props.playbackFps, props.frames, finalFrame]
   );
 
   return (
