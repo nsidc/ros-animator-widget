@@ -4,7 +4,9 @@ import React from 'react';
 
 import { useAppState } from '../../state';
 import playbackState from '../../state/playback';
+import playbackSpeedState from '../../state/playbackSpeed';
 import PlayPause from './PlayPause';
+import PlaybackSpeed from './PlaybackSpeed';
 import Slider from './Slider';
 
 
@@ -22,8 +24,15 @@ const AnimationControls: React.FC<IAnimationControlsProps> = (props) => {
   const handleTogglePlayback = () =>
     dispatch(playbackState.actions.togglePlayback());
 
+  const handleChangeSpeed = (event: React.ChangeEvent<HTMLInputElement>) =>
+    dispatch(playbackSpeedState.actions.setFps(
+      parseInt(event.target.value, 10)
+    ));
+
   const handleSetFrame = (event: React.ChangeEvent<HTMLInputElement>) =>
-    props.setFrame(parseInt(event.target.value, 10));
+    props.setFrame(
+      parseInt(event.target.value, 10)
+    );
 
   return (
     <div>
@@ -35,13 +44,16 @@ const AnimationControls: React.FC<IAnimationControlsProps> = (props) => {
           totalFrames={props.totalFrames} />
       </div>
       <div>
+        <PlaybackSpeed
+          playbackSpeed={appState.playbackSpeed}
+          handleChangeSpeed={handleChangeSpeed} />
         <PlayPause handleTogglePlayback={handleTogglePlayback}
                    playback={appState.playback} />
-        <button disabled={appState.playback === 'PLAYING'} 
+        <button disabled={appState.playback === 'PLAYING'}
                 onClick={props.decrementFrame}>
           <FontAwesomeIcon icon={faStepBackward} />
         </button>
-        <button disabled={appState.playback === 'PLAYING'} 
+        <button disabled={appState.playback === 'PLAYING'}
                 onClick={props.incrementFrame}>
           <FontAwesomeIcon icon={faStepForward} />
         </button>
