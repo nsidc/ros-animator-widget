@@ -1,4 +1,9 @@
-# v0.2.0 (Unreleased)
+# v0.3.0 (2021-06-28)
+
+* Remove frame counter.
+
+
+# v0.2.0 (2021-06-25)
 
 * Add USO email prompt in error component.
 * Add slider animation control.

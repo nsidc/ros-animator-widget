@@ -66,7 +66,6 @@ const Animation: React.FC<IAnimationProps> = (props) => {
       <Viewport
         frames={props.frames}
         currentFrame={frameIndex} />
-      <div>{frameIndex}</div>
       <AnimationControls
         frame={frameIndex}
         setFrame={setFrameIndex}
