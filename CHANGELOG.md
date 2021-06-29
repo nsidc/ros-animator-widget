@@ -1,3 +1,8 @@
+# v0.4.0 (2021-06-29)
+
+* Tweak appearance of speed control.
+
+
 # v0.3.0 (2021-06-28)
 
 * Remove frame counter.
