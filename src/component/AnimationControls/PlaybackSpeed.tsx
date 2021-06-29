@@ -1,5 +1,6 @@
 import React from 'react';
 
+import '../../style/PlaybackSpeed.css';
 import { stateType as playbackSpeedStateType } from '../../state/playbackSpeed';
 
 
