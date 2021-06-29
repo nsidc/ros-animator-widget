@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export type stateType = number;
-export const initialState = 5 as stateType;
+export const initialState = 4 as stateType;
 
 const stateSlice = createSlice({
   name: "playbackFps",

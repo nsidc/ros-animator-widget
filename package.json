@@ -12,7 +12,8 @@
     "@fortawesome/react-fontawesome": "^0.1.14",
     "@reduxjs/toolkit": "^1.6.0",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-tooltip": "^4.2.21"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.13.0",
