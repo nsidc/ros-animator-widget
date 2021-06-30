@@ -36,6 +36,7 @@ const App: React.FC<IAppProps> = (props) => {
         <div className="ros-animator-widget-container">
           <Interface />
         </div>
+        <div style={{display: 'none'}}>VERSION: {process.env.VERSION}</div>
       </StateProvider>
     </ParamsContext.Provider>
   );

@@ -1,6 +1,7 @@
 // Single-file build for distribution of widget
-const path = require("path")
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin")
+const webpack = require("webpack");
+const path = require("path");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 module.exports = {
   entry: './src/index.tsx',
@@ -33,5 +34,10 @@ module.exports = {
       },
     ],
   },
-  plugins: [new UglifyJsPlugin()],
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.VERSION': JSON.stringify(process.env.npm_package_version),
+    }),
+    new UglifyJsPlugin(),
+  ],
 }
