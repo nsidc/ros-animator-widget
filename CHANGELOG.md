@@ -1,5 +1,6 @@
 # v0.5.0 (2021-06-30)
 
+* Add `data-controls-orientation` attribute.
 * Add tooltips to each animation control except slider.
 
 

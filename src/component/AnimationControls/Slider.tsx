@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { stateType as playbackStateType } from '../../state/playback';
+import { useParams } from '../../state/params';
 
 
 interface ISliderProps {
@@ -11,6 +12,13 @@ interface ISliderProps {
 }
 
 const Slider: React.FC<ISliderProps> = (props) => {
+  const { controlsOrientation } = useParams();
+
+  // Firefox is not compatible with the HTML5 spec, so it has its own custom
+  // attribute to set orientation. Spec says orientation should be set
+  // automatically based on height:width ratio.
+  const orient = controlsOrientation === 'right' ? 'vertical' : 'horizontal';
+
   return (
     <input
       type={'range'}
@@ -19,7 +27,8 @@ const Slider: React.FC<ISliderProps> = (props) => {
       value={props.currentFrame}
       onChange={props.handleSetFrame}
       disabled={props.playback === 'PLAYING'}
-      style={{width: '75%'}} />
+      style={{width: '75%'}}
+      orient={orient} />
   )
 }
 export default Slider;

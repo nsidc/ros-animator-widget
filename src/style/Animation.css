@@ -1,0 +1,21 @@
+.animation-layout-bottom {
+}
+.animation-layout-right {
+  display: flex;
+}
+.animation-layout-right .animation-controls-container {
+  display: flex;
+  flex-direction: column;
+  width: 60px;
+  align-items: stretch;
+  justify-content: space-evenly;
+}
+.animation-layout-right .animation-controls-container input[type=range] {
+  -webkit-appearance: slider-vertical;
+  flex-grow: 3;
+  transform: rotate(180deg);
+}
+.animation-layout-right .animation-controls-container div {
+  display: flex;
+  flex-direction: column;
+}

@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 // TODO: DRY initialState. Why do we have to define it in createSlice _and_
 // useReducer?
 export const initialState = {
+  // TODO: Remove location from state? This is found in `params` already.
   location: null as string | null,
   // Frames are represented as ObjectURLs
   frames: [] as Array<string>,
