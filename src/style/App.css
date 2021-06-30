@@ -1,10 +1,6 @@
 .ros-animator-widget-container {
   text-align: center;
   width: fit-content;
-  border: 1px solid;
-  border-radius: 15px;
-
-  padding: 10px;
 }
 
 .nsidc-blue {

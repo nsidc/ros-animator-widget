@@ -1,3 +1,8 @@
+# v0.6.0 (2021-06-30)
+
+* Remove border CSS.
+
+
 # v0.5.0 (2021-06-30)
 
 * Add `data-controls-orientation` attribute.
