@@ -15,14 +15,22 @@ interface IFrameControlsProps {
 const FrameControls: React.FC<IFrameControlsProps> = (props) => {
   return (
     <div className={'frame-controls-container'}>
-      <button disabled={props.playback === 'PLAYING'}
-              onClick={props.onDecrement}>
-        <FontAwesomeIcon icon={faStepBackward} />
-      </button>
-      <button disabled={props.playback === 'PLAYING'}
-              onClick={props.onIncrement}>
-        <FontAwesomeIcon icon={faStepForward} />
-      </button>
+
+      <div className={'frame-control'} data-tip={'Previous frame'}>
+        <button
+          disabled={props.playback === 'PLAYING'}
+          onClick={props.onDecrement}>
+          <FontAwesomeIcon icon={faStepBackward} />
+        </button>
+      </div>
+
+      <div className={'frame-control'} data-tip={'Next frame'}>
+        <button disabled={props.playback === 'PLAYING'}
+                onClick={props.onIncrement}>
+          <FontAwesomeIcon icon={faStepForward} />
+        </button>
+
+      </div>
     </div>
   );
 }

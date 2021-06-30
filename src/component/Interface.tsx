@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactTooltip from 'react-tooltip';
 
 import Animation from './Animation';
 import Failed from './Failed';
@@ -63,6 +64,7 @@ const widgetContents = (state: FixTypeLater) => {
   } else if (state.animation.frames.length > 0) {
     return (
       <div className='animation-container'>
+        <ReactTooltip place={'bottom'} effect={'solid'} />
         <Animation
           frames={state.animation.frames}
           playback={state.playback}

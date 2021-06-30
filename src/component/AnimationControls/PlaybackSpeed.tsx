@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactTooltip from 'react-tooltip';
 
 import '../../style/PlaybackSpeed.css';
 import { stateType as playbackSpeedStateType } from '../../state/playbackSpeed';
@@ -13,7 +12,6 @@ interface IPlaybackSpeedProps {
 const PlaybackSpeed: React.FC<IPlaybackSpeedProps> = (props) => {
   return (
     <div className={'playback-speed-container'}>
-      <ReactTooltip place={'bottom'} effect={'solid'} />
       <div data-tip={'Frames per second'}>
         <label htmlFor={'playback-speed-input'}>Speed: </label>
 

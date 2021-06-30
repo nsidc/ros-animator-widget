@@ -44,7 +44,7 @@ const AppContext = React.createContext<IContext>(
 
 // import this, then `<StateProvider><App /></StateProvider>` to provide
 // context to App.
-export const StateProvider: React.FC = ( { children } ) => {
+export const StateProvider: React.FC = ({ children }) => {
   const [state, dispatch] = React.useReducer<Reducer<RootReducerType>>(
     rootReducer,
     initialState,
