@@ -69,7 +69,6 @@ const Animation: React.FC<IAnimationProps> = (props) => {
     'animation-container',
     `animation-layout-${controlsOrientation}`
   ];
-  console.log(classes);
   return (
     <div className={classes.join(' ')}>
       <Viewport
