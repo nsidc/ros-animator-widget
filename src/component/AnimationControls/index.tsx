@@ -1,10 +1,9 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStepForward, faStepBackward } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 
 import { useAppState } from '../../state';
 import playbackState from '../../state/playback';
 import playbackSpeedState from '../../state/playbackSpeed';
+import FrameControls from './FrameControls';
 import PlayPause from './PlayPause';
 import PlaybackSpeed from './PlaybackSpeed';
 import Slider from './Slider';
@@ -34,8 +33,9 @@ const AnimationControls: React.FC<IAnimationControlsProps> = (props) => {
       parseInt(event.target.value, 10)
     );
 
+  // TODO: Avoid passing `incrementFrame` through this component?
   return (
-    <div>
+    <div className={'animation-controls-container'}>
       <div>
         <Slider
           playback={appState.playback}
@@ -47,16 +47,13 @@ const AnimationControls: React.FC<IAnimationControlsProps> = (props) => {
         <PlaybackSpeed
           playbackSpeed={appState.playbackSpeed}
           handleChangeSpeed={handleChangeSpeed} />
-        <PlayPause handleTogglePlayback={handleTogglePlayback}
-                   playback={appState.playback} />
-        <button disabled={appState.playback === 'PLAYING'}
-                onClick={props.decrementFrame}>
-          <FontAwesomeIcon icon={faStepBackward} />
-        </button>
-        <button disabled={appState.playback === 'PLAYING'}
-                onClick={props.incrementFrame}>
-          <FontAwesomeIcon icon={faStepForward} />
-        </button>
+        <PlayPause
+          handleTogglePlayback={handleTogglePlayback}
+          playback={appState.playback} />
+        <FrameControls
+          playback={appState.playback}
+          onIncrement={props.incrementFrame}
+          onDecrement={props.decrementFrame} />
       </div>
     </div>
   );
