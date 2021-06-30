@@ -34,7 +34,7 @@ Example:
 <body>
   <p>...</p>
   <div class="ros-animator-widget"
-       data-animation="https://example.com/path/to/animation/manifest.json">
+       data-animation="https://nsidc.org/ros-events/BanksIsland200310/manifest.json">
   </div>
 
   <p>...</p>
@@ -43,6 +43,27 @@ Example:
   <script src="https://unpkg.com/@nsidc/ros-animator-widget@0.1.1">
   </script>
 </body>
+```
+
+
+### Parameters
+
+#### `data-animation`
+
+Required. Where to find the animation.
+
+
+#### `data-controls-orientation`
+
+Optional. Sets the location of the controls.
+
+Possible values: `bottom`, `right`. Default: `bottom`
+
+Example:
+```
+<div class="ros-animator-widget"
+     data-animation="https://nsidc.org/ros-events/BanksIsland200310/manifest.json"
+     data-controls-orientation="right">
 ```
 
 
