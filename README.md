@@ -1,23 +1,22 @@
+[![NSF-1928230](https://img.shields.io/badge/NSF-1928230-red.svg)](https://nsf.gov/awardsearch/showAward?AWD_ID=1928230)
+[![nsidc](https://circleci.com/gh/nsidc/ros-animator-widget.svg?style=shield)](https://app.circleci.com/pipelines/github/nsidc/ros-animator-widget)
+
+
 # Rain-on-Snow Event Animator Widget
 
 This widget can really be used for any type of animation composed of discrete
-images as frames. This repo should be forked and renamed more generically
-if/when the API is more sensible.
+images as frames.
+
+This repo should be forked and renamed more generically if/when the API is more
+sensible and stable. Solving the transfer mechanism problem is the main
+blocker. Can we have all these behaviors if we transfer the imagery as a GIF,
+for example?
 
 
-## TODO
+## Level of Support
 
-- Decide on parameter format. Maybe:
-  - URL to a `manifest.json` containing URLs to images
-  - URL to a `.gif`
-  - URL to a `.mp4`
-  - URL to a spritesheet
-  - Something else?
-
-- Improve animation performance and consistency at high framerates.
-
-- Deliver widget as a Web Component instead of using the usual React
-  div-injection method?
+This repository is not actively supported by NSIDC but we welcome issue
+submissions and pull requests in order to foster community contribution.
 
 
 ## Usage
@@ -77,3 +76,9 @@ To release:
 * Create a release commit with `npm version < major | minor | patch >`.
   * For a pre-release, use `npm version prerelease --preid=rc`.
 * Push the new commit and tag.
+
+
+## Roadmap
+
+* Release as Web Component
+* Use a more efficient/convenient transfer format. GIF?
