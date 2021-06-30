@@ -7,17 +7,18 @@ import Loading from './Loading';
 import { useAppState } from '../state';
 import animationState from '../state/animation';
 import loadingState from '../state/loading';
-import { useParams } from '../state/params';
+import { useParams, ControlsOrientationValue } from '../state/params';
 import { FixTypeLater } from '../type/misc';
 import { fetchImagesFromManifest } from '../util/images';
 
 
 const Interface: React.FC = (props) => {
   const { state: appState, dispatch } = useAppState();
-  const { animationLocation } = useParams();
+  const { animationLocation, controlsOrientation, appId } = useParams();
 
   React.useEffect(
     () => {
+      // TODO: use animationLocation param instead
       if ( ! appState.animation.location ) {
         return;
       }
@@ -51,12 +52,16 @@ const Interface: React.FC = (props) => {
     [],
   );
 
-  return widgetContents(appState);
+  return widgetContents(appState, controlsOrientation, appId);
 }
 
 
 /* eslint-disable */
-const widgetContents = (state: FixTypeLater) => {
+const widgetContents = (
+  state: FixTypeLater,
+  controlsOrientation: ControlsOrientationValue,
+  appId: string,
+) => {
   if (state.loading) {
     return (
       <Loading />
@@ -64,7 +69,7 @@ const widgetContents = (state: FixTypeLater) => {
   } else if (state.animation.frames.length > 0) {
     return (
       <div className='animation-container'>
-        <ReactTooltip place={'bottom'} effect={'solid'} />
+        <ReactTooltip id={appId} place={controlsOrientation} effect={'solid'} />
         <Animation
           frames={state.animation.frames}
           playback={state.playback}

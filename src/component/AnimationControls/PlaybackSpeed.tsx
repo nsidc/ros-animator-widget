@@ -2,6 +2,7 @@ import React from 'react';
 
 import '../../style/PlaybackSpeed.css';
 import { stateType as playbackSpeedStateType } from '../../state/playbackSpeed';
+import { useParams } from '../../state/params';
 
 
 interface IPlaybackSpeedProps {
@@ -10,9 +11,11 @@ interface IPlaybackSpeedProps {
 }
 
 const PlaybackSpeed: React.FC<IPlaybackSpeedProps> = (props) => {
+  const { appId } = useParams();
+
   return (
     <div className={'playback-speed-container'}>
-      <div data-tip={'Frames per second'}>
+      <div data-for={appId} data-tip={'Frames per second'}>
         <label htmlFor={'playback-speed-input'}>Speed: </label>
 
         <input

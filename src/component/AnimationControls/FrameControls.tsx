@@ -4,6 +4,7 @@ import React from 'react';
 
 import '../../style/FrameControls.css';
 import { stateType as playbackStateType } from '../../state/playback';
+import { useParams } from '../../state/params';
 
 
 interface IFrameControlsProps {
@@ -13,10 +14,15 @@ interface IFrameControlsProps {
 }
 
 const FrameControls: React.FC<IFrameControlsProps> = (props) => {
+  const { appId } = useParams();
+
   return (
     <div className={'frame-controls-container'}>
 
-      <div className={'frame-control'} data-tip={'Previous frame'}>
+      <div
+        className={'frame-control'}
+        data-for={appId}
+        data-tip={'Previous frame'}>
         <button
           disabled={props.playback === 'PLAYING'}
           onClick={props.onDecrement}>
@@ -24,7 +30,10 @@ const FrameControls: React.FC<IFrameControlsProps> = (props) => {
         </button>
       </div>
 
-      <div className={'frame-control'} data-tip={'Next frame'}>
+      <div
+        className={'frame-control'}
+        data-for={appId}
+        data-tip={'Next frame'}>
         <button disabled={props.playback === 'PLAYING'}
                 onClick={props.onIncrement}>
           <FontAwesomeIcon icon={faStepForward} />
