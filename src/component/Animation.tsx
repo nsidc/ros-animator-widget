@@ -1,7 +1,9 @@
 import React from 'react';
 
+import '../style/Animation.css';
 import AnimationControls from './AnimationControls';
 import Viewport from './Viewport';
+import { useParams } from '../state/params';
 
 
 const initialFrame = 0;
@@ -39,6 +41,8 @@ const Animation: React.FC<IAnimationProps> = (props) => {
   const finalFrame = props.frames.length - 1
   const [frameIndex, setFrameIndex] = React.useState(initialFrame);
 
+  const { controlsOrientation } = useParams();
+
   const frameChangerCallback = React.useCallback((direction: 1 | -1) => {
     return setFrameIndex(frameChanger(direction, finalFrame));
   }, [finalFrame]);
@@ -61,8 +65,13 @@ const Animation: React.FC<IAnimationProps> = (props) => {
     [props.playback, props.playbackFps, props.frames, finalFrame]
   );
 
+  const classes = [
+    'animation-container',
+    `animation-layout-${controlsOrientation}`
+  ];
+  console.log(classes);
   return (
-    <div className={'animation-container'}>
+    <div className={classes.join(' ')}>
       <Viewport
         frames={props.frames}
         currentFrame={frameIndex} />

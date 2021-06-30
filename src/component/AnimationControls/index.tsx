@@ -33,16 +33,15 @@ const AnimationControls: React.FC<IAnimationControlsProps> = (props) => {
       parseInt(event.target.value, 10)
     );
 
+
   // TODO: Avoid passing `incrementFrame` through this component?
   return (
-    <div className={'animation-controls-container'}>
-      <div>
-        <Slider
-          playback={appState.playback}
-          currentFrame={props.frame}
-          handleSetFrame={handleSetFrame}
-          totalFrames={props.totalFrames} />
-      </div>
+    <div className='animation-controls-container'>
+      <Slider
+        playback={appState.playback}
+        currentFrame={props.frame}
+        handleSetFrame={handleSetFrame}
+        totalFrames={props.totalFrames} />
       <div>
         <PlaybackSpeed
           playbackSpeed={appState.playbackSpeed}

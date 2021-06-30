@@ -6,17 +6,14 @@ import Loading from './Loading';
 import { useAppState } from '../state';
 import animationState from '../state/animation';
 import loadingState from '../state/loading';
+import { useParams } from '../state/params';
 import { FixTypeLater } from '../type/misc';
 import { fetchImagesFromManifest } from '../util/images';
 
 
-interface IInterfaceProps {
-  // TODO: Should this be nullable?
-  animationLocation: string | null;
-}
-
-const Interface: React.FC<IInterfaceProps> = (props) => {
+const Interface: React.FC = (props) => {
   const { state: appState, dispatch } = useAppState();
+  const { animationLocation } = useParams();
 
   React.useEffect(
     () => {
@@ -39,7 +36,7 @@ const Interface: React.FC<IInterfaceProps> = (props) => {
   );
   React.useEffect(
     () => {
-      if ( ! props.animationLocation ) {
+      if ( ! animationLocation ) {
         console.error(
           'No data found in "data-animation" attribute: ' +
           (appState.animation.location as string)
@@ -47,7 +44,7 @@ const Interface: React.FC<IInterfaceProps> = (props) => {
         dispatch(loadingState.actions.loaded());
         return;
       }
-      dispatch(animationState.actions.setLocation(props.animationLocation));
+      dispatch(animationState.actions.setLocation(animationLocation));
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
