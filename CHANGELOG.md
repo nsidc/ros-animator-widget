@@ -1,3 +1,8 @@
+# v0.5.0 (2021-06-30)
+
+* Add tooltips to each animation control except slider.
+
+
 # v0.4.0 (2021-06-29)
 
 * Tweak appearance of speed control.

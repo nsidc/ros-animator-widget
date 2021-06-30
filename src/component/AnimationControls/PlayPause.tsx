@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 
+import '../../style/PlayPause.css';
 import { stateType as playbackStateType } from '../../state/playback';
 
 
@@ -24,9 +25,12 @@ interface IPlayPauseProps {
 
 const PlayPause: React.FC<IPlayPauseProps> = (props) => {
   return (
-    <button onClick={props.handleTogglePlayback}>
-      {icon(props.playback)}
-    </button>
+    <div className={'play-pause'}
+         data-tip={props.playback === 'PAUSED' ? 'Play' : 'Pause'}>
+      <button onClick={props.handleTogglePlayback}>
+        {icon(props.playback)}
+      </button>
+    </div>
   )
 }
 export default PlayPause;
